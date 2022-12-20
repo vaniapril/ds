@@ -212,16 +212,22 @@ public class MyFrame extends JFrame{
 
                     BigDecimal value;
                     switch (list2.getSelectedIndex()) {
-                        default -> value = value2.add(value3);
-                        case 1 -> value = value2.subtract(value3);
-                        case 2 -> value = value2.multiply(value3);
-                        case 3 -> {
+                        case 1:
+                            value = value2.subtract(value3);
+                            break;
+                        case 2:
+                            value = value2.multiply(value3);
+                            break;
+                        case 3:
                             if (value3.compareTo(new BigDecimal("0")) == 0) {
                                 label.setText("Ошибка: Невозможно делить на 0.");
                                 return;
                             }
                             value = value2.divide(value3, 10, RoundingMode.HALF_UP);
-                        }
+                            break;
+                        default:
+                            value = value2.add(value3);
+                            break;
                     }
                     value = value.divide(new BigDecimal("1"), 10, RoundingMode.HALF_UP);
 
@@ -232,16 +238,22 @@ public class MyFrame extends JFrame{
 
                     if (list3.getSelectedIndex() >= 2 && list1.getSelectedIndex() < 2){
                         switch (list3.getSelectedIndex()) {
-                            default -> value = value.add(value4);
-                            case 1 -> value = value.subtract(value4);
-                            case 2 -> value = value.multiply(value4);
-                            case 3 -> {
+                            case 1:
+                                value = value.subtract(value4);
+                                break;
+                            case 2:
+                                value = value.multiply(value4);
+                                break;
+                            case 3:
                                 if (value4.compareTo(new BigDecimal("0")) == 0) {
                                     label.setText("Ошибка: Невозможно делить на 0.");
                                     return;
                                 }
                                 value = value.divide(value4, 10, RoundingMode.HALF_UP);
-                            }
+                                break;
+                            default:
+                                value = value.add(value4);
+                                break;
                         }
                         value = value.divide(new BigDecimal("1"), 10, RoundingMode.HALF_UP);
 
@@ -251,29 +263,41 @@ public class MyFrame extends JFrame{
                         }
 
                         switch (list1.getSelectedIndex()) {
-                            default -> value = value1.add(value);
-                            case 1 -> value = value1.subtract(value);
-                            case 2 -> value = value1.multiply(value);
-                            case 3 -> {
+                            case 1:
+                                value = value1.subtract(value);
+                                break;
+                            case 2:
+                                value = value1.multiply(value);
+                                break;
+                            case 3:
                                 if (value.compareTo(new BigDecimal("0")) == 0) {
                                     label.setText("Ошибка: Невозможно делить на 0.");
                                     return;
                                 }
                                 value = value1.divide(value, 10, RoundingMode.HALF_UP);
-                            }
+                                break;
+                            default:
+                                value = value1.add(value);
+                                break;
                         }
                     } else {
                         switch (list1.getSelectedIndex()) {
-                            default -> value = value1.add(value);
-                            case 1 -> value = value1.subtract(value);
-                            case 2 -> value = value1.multiply(value);
-                            case 3 -> {
+                            case 1:
+                                value = value1.subtract(value);
+                                break;
+                            case 2:
+                                value = value1.multiply(value);
+                                break;
+                            case 3:
                                 if (value.compareTo(new BigDecimal("0")) == 0) {
                                     label.setText("Ошибка: Невозможно делить на 0.");
                                     return;
                                 }
                                 value = value1.divide(value, 10, RoundingMode.HALF_UP);
-                            }
+                                break;
+                            default:
+                                value = value1.add(value);
+                                break;
                         }
                         value = value.divide(new BigDecimal("1"), 10, RoundingMode.HALF_UP);
 
@@ -283,16 +307,22 @@ public class MyFrame extends JFrame{
                         }
 
                         switch (list3.getSelectedIndex()) {
-                            default -> value = value.add(value4);
-                            case 1 -> value = value.subtract(value4);
-                            case 2 -> value = value.multiply(value4);
-                            case 3 -> {
+                            case 1:
+                                value = value.subtract(value4);
+                                break;
+                            case 2:
+                                value = value.multiply(value4);
+                                break;
+                            case 3:
                                 if (value4.compareTo(new BigDecimal("0")) == 0) {
                                     label.setText("Ошибка: Невозможно делить на 0.");
                                     return;
                                 }
                                 value = value.divide(value4, 10, RoundingMode.HALF_UP);
-                            }
+                                break;
+                            default:
+                                value = value.add(value4);
+                                break;
                         }
                     }
 
@@ -344,8 +374,12 @@ public class MyFrame extends JFrame{
     BigDecimal round(BigDecimal value){
         RoundingMode rMode = RoundingMode.HALF_UP;
         switch (list4.getSelectedIndex()){
-            case 1 -> rMode = RoundingMode.HALF_EVEN;
-            case 2 -> rMode = RoundingMode.DOWN;
+            case 1:
+                rMode = RoundingMode.HALF_EVEN;
+                break;
+            case 2:
+                rMode = RoundingMode.DOWN;
+                break;
         }
 
         return value.divide(new BigDecimal("1"), 0, rMode);
@@ -396,7 +430,7 @@ public class MyFrame extends JFrame{
                     return false;
                 }
                 if ((dot - i) % 4 == 0 && value.charAt(i) != ' '){
-                    return false;
+                    return i == 0 && value.charAt(i) == '-';
                 }
             }
         }

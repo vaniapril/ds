@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class MyFrame extends JFrame{
     private static final int width = 850;
-    private static final int height = 150;
+    private static final int height = 200;
 
     JTextField textField1;
     JTextField textField2;
@@ -208,7 +208,7 @@ public class MyFrame extends JFrame{
                     return false;
                 }
                 if ((dot - i) % 4 == 0 && value.charAt(i) != ' '){
-                    return false;
+                    return i == 0 && value.charAt(i) == '-';
                 }
             }
         }
